@@ -1,0 +1,49 @@
+openapi: 3.0.0
+info:
+  title: Send Lead to Zapier
+  version: 1.0.0
+paths:
+  /send-lead:
+    post:
+      operationId: sendLeadToZapier
+      summary: Send user and scope data to the iView Labs team via Zapier
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: User's full name
+                email:
+                  type: string
+                  description: User's email address
+                goal:
+                  type: string
+                  description: Goal of the role
+                deliverables:
+                  type: string
+                  description: Deliverables expected from the role
+                skills:
+                  type: string
+                  description: Required tools and skills
+                workingStyle:
+                  type: string
+                  description: How the talent should work (e.g., async, embedded)
+                autonomy:
+                  type: string
+                  description: Level of independence expected
+                scopeSummary:
+                  type: string
+                  description: The GPT-generated Talent Scope Summary
+              required:
+                - name
+                - email
+                - scopeSummary
+      responses:
+        '200':
+          description: Successfully sent to Zapier
+servers:
+  - url: https://hooks.zapier.com/hooks/catch/12831161/2vjgzlr/
